@@ -11,8 +11,8 @@ def convert_data(featuresdf):
     # Encode the classification labels
     le = LabelEncoder()
     yy = to_categorical(le.fit_transform(y)) 
-    # onehotencoder = OneHotEncoder()
-    # yy = to_categorical(onehotencoder.fit_transform(y))
-    print(yy)
+    #print(yy)
+    
     # split the dataset 
     x_train, x_test, y_train, y_test = train_test_split(X, yy, test_size=0.2, random_state = 42)
+    return(x_train, x_test, y_train, y_test)
