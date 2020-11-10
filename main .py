@@ -3,16 +3,45 @@ import numpy as np
 from tqdm import tqdm
 import librosa
 
-data=pd.read_csv('D:/DATASET/UrbanSound8K/train.csv')
-print(data.head())     #To see the dataset
+data = pd.read_csv('D:/DATASET/UrbanSound8K/train.csv')
+print(data.head())  # To see the dataset
 
-mfc=[]
-lab=[]
+mfc = []
+lab = []
+ton = []
+me = []
+chro = []
 # for i in tqdm(range(len(data))):
-for i in tqdm(range(100)):
+for i in tqdm(range(10)):
     f_name = 'D:/DATASET/UrbanSound8K/Train/'+str(data.ID[i])+'.wav'
     X, s_rate = librosa.load(f_name, res_type='kaiser_fast')
-    mf = np.mean(librosa.feature.mfcc(y=X, sr=s_rate).T,axis=0)
+    # mfccs
+    mf = np.mean(librosa.feature.mfcc(y=X, sr=s_rate).T, axis=0)
     mfc.append(mf)
-    l=data.Class[i]
+    l = data.Class[i]
     lab.append(l)
+    # tonnetz
+    try:
+        t = np.mean(librosa.feature.tonnetz(
+            y=librosa.effects.harmonic(X), sr=s_rate).T, axis=0)
+        ton.append(t)
+    except:
+        print(f_name)
+    # mel-scaled spectrogram
+    m = np.mean(librosa.feature.melspectrogram(X, sr=s_rate).T, axis=0)
+    me.append(m)
+    # chromagram
+    s = np.abs(librosa.stft(X))
+    c = np.mean(librosa.feature.chroma_stft(S=s, sr=s_rate).T, axis=0)
+    chro.append(c)
+
+mfcc = pd.DataFrame(mfc)
+mfcc.to_csv('./csv/mfc.csv','w',index=False)
+chrr = pd.DataFrame(chro)
+chrr.to_csv('./csv/chr.csv','w', index=False)
+mee = pd.DataFrame(me)
+mee.to_csv('./csv/me.csv','w', index=False)
+tonn = pd.DataFrame(ton)
+tonn.to_csv('./csv/ton.csv','w', index=False)
+la = pd.DataFrame(lab)
+la.to_csv('./csv/labels.csv','w', index=False)
