@@ -1,12 +1,5 @@
-from helpers.load_data import load_data
-from helpers.feature_extraction import feature_extraction
-from helpers.convert_data import convert_data
-from helpers.model import cnn
+import pandas as pd
 
-# audiodf = load_data()
 
-featuresdf = feature_extraction()
-feature = featuresdf.feature
-# print(feature[0].shape)
-#x_train, x_test, y_train, y_test = convert_data(featuresdf)
-# cnn(x_train, x_test, y_train, y_test)
+data=pd.read_csv('D:/DATASET/UrbanSound8K/train.csv')
+print(data.head())     #To see the dataset
