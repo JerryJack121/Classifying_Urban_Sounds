@@ -7,4 +7,4 @@ from helpers.convert_data import convert_data
 
 featuresdf = feature_extraction()
 
-convert_data(featuresdf)
+x_train, x_test, y_train, y_test = convert_data(featuresdf)
