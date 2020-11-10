@@ -10,7 +10,9 @@ def mfcc(file_name):
     try:
         audio, sample_rate = librosa.load(file_name, res_type='kaiser_fast') 
         mfccs = librosa.feature.mfcc(y=audio, sr=sample_rate, n_mfcc=40)
+        #print(mfccs.shape)
         mfccsscaled = np.mean(mfccs.T,axis=0)
+        #print(mfccsscaled.shape)
         
     except Exception as e:
         print("Error encountered while parsing file: ", file_name)
@@ -33,11 +35,11 @@ def feature_extraction():
     for index, row in metadata.iterrows():
         #讀取前400筆資料
         i+=1   
-        if i > 50: 
+        if i > 3: 
             break
         file_name = os.path.join(os.path.abspath(fulldatasetpath),'fold'+str(row["fold"])+'/',str(row["slice_file_name"]))
         
-        class_label = row["classID"]
+        class_label = row["class"]
         data = mfcc(file_name)
         
         features.append([data, class_label])
