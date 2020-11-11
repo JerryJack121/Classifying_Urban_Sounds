@@ -4,7 +4,7 @@ import librosa
 import pandas as pd
 
 def read_csv():
-    labels = pd.read_csv('csv/labels.csv')
+    labels = pd.read_csv('csv/labels.csv', header = None)
     mfcc = pd.read_csv('csv/mfcc.csv', header = None)
     chromagram = pd.read_csv('csv/chromagram.csv', header = None)
     tonnetz = pd.read_csv('csv/tonnetz.csv', header = None)
