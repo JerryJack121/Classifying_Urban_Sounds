@@ -44,5 +44,6 @@ mel = pd.DataFrame(me)
 mel.to_csv('./csv/mel.csv', 'w', index=False)
 tonnetz = pd.DataFrame(ton)
 tonnetz.to_csv('./csv/tonnetz.csv', 'w', index=False)
-la = pd.DataFrame(lab)
+lab_dict={'classID':lab}
+la = pd.DataFrame(lab_dict)
 la.to_csv('./csv/labels.csv', 'w', index=False)
