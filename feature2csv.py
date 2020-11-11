@@ -12,8 +12,9 @@ ton = []
 me = []
 chro = []
 # for i in tqdm(range(len(data))):
+
 for i in tqdm(range(10)):
-    f_name = 'D:/DATASET/UrbanSound8K/Train/'+str(data.ID[i])+'.wav'
+    f_name = 'D:/DATASET/UrbanSound8K/Train/'+str(data.ID[i+1])+'.wav'
     X, s_rate = librosa.load(f_name, res_type='kaiser_fast')
     # mfccs
     mf = np.mean(librosa.feature.mfcc(y=X, sr=s_rate).T, axis=0)
@@ -36,12 +37,12 @@ for i in tqdm(range(10)):
     chro.append(c)
 
 mfcc = pd.DataFrame(mfc)
-mfcc.to_csv('./csv/mfc.csv', 'w', index=False)
-chrr = pd.DataFrame(chro)
-chrr.to_csv('./csv/chr.csv', 'w', index=False)
-mee = pd.DataFrame(me)
-mee.to_csv('./csv/me.csv', 'w', index=False)
-tonn = pd.DataFrame(ton)
-tonn.to_csv('./csv/ton.csv', 'w', index=False)
+mfcc.to_csv('./csv/mfcc.csv', 'w', index=False)
+chromagram = pd.DataFrame(chro)
+chromagram.to_csv('./csv/chromagram.csv', 'w', index=False)
+mel = pd.DataFrame(me)
+mel.to_csv('./csv/mel.csv', 'w', index=False)
+tonnetz = pd.DataFrame(ton)
+tonnetz.to_csv('./csv/tonnetz.csv', 'w', index=False)
 la = pd.DataFrame(lab)
 la.to_csv('./csv/labels.csv', 'w', index=False)
