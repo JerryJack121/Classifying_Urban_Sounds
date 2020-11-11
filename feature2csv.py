@@ -11,10 +11,12 @@ lab = []
 ton = []
 me = []
 chro = []
+ID = []
 # for i in tqdm(range(len(data))):
 
 for i in tqdm(range(10)):
-    f_name = 'D:/DATASET/UrbanSound8K/Train/'+str(data.ID[i+1])+'.wav'
+    f_name = 'D:/DATASET/UrbanSound8K/Train/'+str(data.ID[i])+'.wav'
+    ID.append(data.ID[i])
     X, s_rate = librosa.load(f_name, res_type='kaiser_fast')
     # mfccs
     mf = np.mean(librosa.feature.mfcc(y=X, sr=s_rate).T, axis=0)
@@ -49,8 +51,8 @@ for i in tqdm(range(10)):
 # la.to_csv('./csv/labels.csv', 'w', index=False, header=False)
 
 
-feature_dict = {'classID': lab, 'mel': me,  'mfcc': mfc,
+feature_dict = {'ID': ID, 'classID': lab, 'mel': me,  'mfcc': mfc,
                 'chromagram': chro, 'tonnetz': ton}
 featuredf = pd.DataFrame(feature_dict)
-featuredf.to_csv('./csv/feature.csv')
+featuredf.to_csv('./csv/feature.csv', index=False)
 print('CSV寫入完成')
