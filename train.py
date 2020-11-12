@@ -25,7 +25,37 @@ def NN_model():
 def training(x_train, x_test, y_train, y_test):
     model = NN_model()
     history = model.fit(x_train, y_train,
-                        batch_size=64, epochs=100,
+                        batch_size=64, epochs=10,
                         validation_data=(x_test, y_test))
 
     model.save('model_1000.h5')
+    return history
+
+def plot_history(history):
+    import matplotlib.pyplot as plt
+
+    history_dict = history.history
+    lose_values = history_dict['loss']
+    val_lose_values = history_dict['val_loss']
+    acc = history_dict['acc']
+    val_acc = history_dict['val_acc']
+
+    epochs = range(1, len(lose_values)+1)
+    #繪製訓練與驗證的損失分數
+    plt.figure()
+    plt.subplot(211)
+    plt.plot(epochs, lose_values,'bo',label='Training loss')
+    plt.plot(epochs, val_lose_values,'b',label='Validation loss')
+    plt.title('Training & Validation loss')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.legend()
+    #繪製訓練與驗證的準確度
+    plt.subplot(212)
+    plt.plot(epochs, acc,'bo',label='Training acc')
+    plt.plot(epochs, val_acc,'b',label='Validation acc')
+    plt.title('Training & Validation accuracy')
+    plt.xlabel('Epochs')
+    plt.ylabel('accuracy')
+    plt.legend()
+    plt.show()
