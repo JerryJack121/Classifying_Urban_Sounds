@@ -7,7 +7,7 @@ import numpy as np
 def split_data(feature, labels):
     lab = ['air_conditioner', 'car_horn', 'children_playing', 'dog_bark',
            'drilling', 'engine_idling', 'gun_shot', 'jackhammer', 'siren', 'street_music']
-    lab =  np.array(lab)
+    lab = np.array(lab)
     lab = lab.ravel()
     # Label encoder
     le = LabelEncoder().fit(lab)
@@ -25,7 +25,9 @@ def split_data(feature, labels):
 
     x_train = feature[:4000]
     y_train = labels[:4000]
-    x_test = feature[4000:5000]
-    y_test = labels[4000:5000]
+    x_val = feature[4000:5000]
+    y_val = labels[4000:5000]
+    x_test = feature[5000:]
+    y_test = labels[5000:]
 
-    return x_train, x_test, y_train, y_test
+    return x_train, y_train, x_val, y_val, y_test, y_test
