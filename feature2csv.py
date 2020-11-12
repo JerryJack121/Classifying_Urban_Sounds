@@ -12,9 +12,9 @@ ton = []
 me = []
 chro = []
 ID = []
-# for i in tqdm(range(len(data))):
 
-for i in tqdm(range(10)):
+# for i in tqdm(range(len(data))):
+for i in tqdm(range(len(data))):
     f_name = 'D:/DATASET/UrbanSound8K/Train/'+str(data.ID[i])+'.wav'
     ID.append(data.ID[i])
     X, s_rate = librosa.load(f_name, res_type='kaiser_fast')

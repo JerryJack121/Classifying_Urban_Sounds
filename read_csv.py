@@ -17,7 +17,8 @@ def read_csv():
 
 
     #矩陣水平合併
-    feature = np.hstack((mfcc,mel,chromagram,tonnetz))
+    feature = np.hstack((mfcc,mel,chromagram))
     labels =  np.array(labels)
+    labels = labels.ravel()
 
     return feature,labels

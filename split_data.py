@@ -5,29 +5,27 @@ import numpy as np
 
 
 def split_data(feature, labels):
-    lab = ['air_conditioner', ' car_horn', 'children_playing', 'dog_bark',
+    lab = ['air_conditioner', 'car_horn', 'children_playing', 'dog_bark',
            'drilling', 'engine_idling', 'gun_shot', 'jackhammer', 'siren', 'street_music']
-    le = LabelEncoder()
-    le = le.fit(lab)
+    lab =  np.array(lab)
+    lab = lab.ravel()
     # Label encoder
-    labels = np.array(labels)
-    lab = le.transform(lab)
-    label = le.transform(labels)
+    le = LabelEncoder().fit(lab)
+    le.transform(labels)
     # onehot encoder
     lab = lab.reshape(-1, 1)
-    label = label.reshape(-1, 1)
+    labels = labels.reshape(-1, 1)
     enc = OneHotEncoder().fit(lab)
-    label = enc.transform(label).toarray()
-    print(label)
+    labels = enc.transform(labels).toarray()
 
-    # 正規化
+    # # 正規化
     stan = StandardScaler()
     stan = stan.fit(feature)
     feature = stan.transform(feature)
 
-    x_train = feature[:5]
-    x_test = feature[5:]
-    y_train = label[:5]
-    y_test = label[5:]
+    x_train = feature[:4000]
+    y_train = labels[:4000]
+    x_test = feature[4000:5000]
+    y_test = labels[4000:5000]
 
     return x_train, x_test, y_train, y_test
