@@ -28,8 +28,10 @@ def training(x_train, x_test, y_train, y_test):
                         batch_size=64, epochs=10,
                         validation_data=(x_test, y_test))
 
-    model.save('model_1000.h5')
-    return history
+    save_name = 'model_1000.h5'
+    model.save(save_name)
+    print(save_name,'存檔')
+    plot_history(history)
 
 
 def plot_history(history):
