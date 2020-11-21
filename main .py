@@ -1,13 +1,13 @@
 from feature2csv import feature2csv
 from read_csv import read_csv
-from split_data import split_data
-from NN import training, model_test
+from preprocessing import preprocessing
+from train import train
 
-
+# 提取特徵並寫入csv
 # feature2csv()
 #讀取儲存在csv中的data
 feature, labels = read_csv()
 #預處理
-x_train, y_train, x_val, y_val, y_test, y_test = split_data(feature, labels)
+x_train, y_train, x_val, y_val, x_test, y_test = preprocessing(feature, labels)
 #訓練模型
-training(x_train, x_val, y_train, y_val)
+train(x_train, x_val, y_train, y_val, batch_size=64, epochs=50)
