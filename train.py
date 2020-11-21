@@ -34,8 +34,8 @@ def train(x_train, x_test, y_train, y_test, batch_size=64, epochs=10):
     model = NN_model()
     history = model.fit(x_train,
                         y_train,
-                        batch_size=64,
-                        epochs=10,
+                        batch_size,
+                        epochs,
                         validation_data=(x_test, y_test))
 
     save_name = './model/model_1121.h5'
