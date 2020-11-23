@@ -1,10 +1,7 @@
-from feature2csv import feature2csv
 from read_csv import read_csv
 from preprocessing import preprocessing
 from train import train
 
-# 提取特徵並寫入csv
-# feature2csv()
 #讀取儲存在csv中的data
 feature, labels = read_csv()
 #預處理

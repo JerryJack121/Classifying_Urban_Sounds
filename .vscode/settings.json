@@ -1,5 +1,7 @@
 {
     "python.pythonPath": "C:\\Users\\Jack\\anaconda3\\envs\\Jack\\python.exe",
-    "python.linting.pylintArgs": ["--generate-members"],
-    "editor.formatOnSave": true,
+    "python.linting.pylintArgs": [
+        "--generate-members"
+    ],
+    // "editor.formatOnSave": true,
 }

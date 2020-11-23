@@ -38,7 +38,7 @@ def train(x_train, x_test, y_train, y_test, batch_size=64, epochs=10):
                         epochs,
                         validation_data=(x_test, y_test))
 
-    save_name = './model/model_1121.h5'
+    save_name = './model/model_1123.h5'
     model.save(save_name)
     print(save_name, '存檔')
     plot_history(history)
