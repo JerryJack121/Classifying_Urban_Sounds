@@ -52,11 +52,6 @@ def feature2csv():
     la = pd.DataFrame(lab_dict)
     la.to_csv('./csv/labels.csv', index=False, header=False)
 
-
-    # feature_dict = {'ID': ID, 'classID': lab, 'mel': me,  'mfcc': mfc,
-    #                 'chromagram': chro, 'tonnetz': ton}
-    # featuredf = pd.DataFrame(feature_dict)
-    # featuredf.to_csv('./csv/feature.csv', index=False)
     print('CSV寫入完成')
 
 if __name__ == "__main__":
