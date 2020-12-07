@@ -3,10 +3,10 @@ from keras.layers import Dense, Dropout, Activation
 from keras.optimizers import Adam
 
 
-def NN_model():
+def NN_model(feature_size):
     model = Sequential()
 
-    model.add(Dense(160, input_shape=(160, ), activation='relu'))
+    model.add(Dense(feature_size, input_shape=(feature_size, ), activation='relu'))
 
     model.add(Dense(256, activation='relu'))
     model.add(Dropout(0.6))

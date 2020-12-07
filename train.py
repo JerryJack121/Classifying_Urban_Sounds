@@ -31,14 +31,14 @@ def plot_history(history):
 
 
 def train(x_train, x_test, y_train, y_test, batch_size=64, epochs=10):
-    model = NN_model()
+    model = NN_model(feature_size = x_train.shape[-1])
     history = model.fit(x_train,
                         y_train,
                         batch_size,
                         epochs,
                         validation_data=(x_test, y_test))
 
-    save_name = './model/model_1123.h5'
+    save_name = './model/model_1207.h5'
     model.save(save_name)
     print(save_name, '存檔')
     plot_history(history)

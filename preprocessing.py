@@ -30,3 +30,28 @@ def preprocessing(feature, labels):
     y_test = labels[5000:]
 
     return x_train, y_train, x_val, y_val, x_test, y_test
+
+
+def preprocessing2(train_features, train_labels, valid_features, valid_labels, test_features):
+    lab = np.array([
+        'air_conditioner', 'car_horn', 'children_playing', 'dog_bark',
+        'drilling', 'engine_idling', 'gun_shot', 'jackhammer', 'siren',
+        'street_music'
+    ])
+    # Label encoder
+    le = LabelEncoder().fit(lab)
+    lab = le.transform(lab).reshape(-1, 1)
+    train_labels = le.transform(train_labels).reshape(-1, 1)
+    valid_labels = le.transform(valid_labels).reshape(-1, 1)
+    # onehot encoder
+    enc = OneHotEncoder().fit(lab)
+    train_labels = enc.transform(train_labels).toarray()
+    valid_labels = enc.transform(valid_labels).toarray()
+
+    # # 正規化
+    stan = StandardScaler().fit(train_features)
+    train_features = stan.transform(train_features)
+    valid_features = stan.transform(valid_features)
+    test_features = stan.transform(test_features)
+
+    return train_features, train_labels, valid_features, valid_labels, test_features
