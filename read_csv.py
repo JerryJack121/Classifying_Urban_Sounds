@@ -25,7 +25,11 @@ def read_csv():
 
 def read_csv2():
     train_labels = pd.read_csv('csv/train/labels.csv', header = None)
+    train_labels = np.array(train_labels)
+    # train_labels = train_labels.ravel()
     train_features = pd.read_csv('csv/train/mfcc.csv', header = None)
+    train_features = np.array(train_features)
     test_features = pd.read_csv('csv/test/mfcc.csv', header = None)
+    test_features = np.array(test_features)
 
     return train_features, train_labels, test_features
