@@ -15,43 +15,43 @@ def feature2csv():
     chro = []
     ID = []
 
-    # for i in tqdm(range(len(data))):
     for i in tqdm(range(len(data))):
         f_name = 'D:/DATASET/UrbanSound8K/Train/'+str(data.ID[i])+'.wav'
         ID.append(data.ID[i])
         X, s_rate = librosa.load(f_name, res_type='kaiser_fast')
         # mfccs
-        mf = np.mean(librosa.feature.mfcc(y=X, sr=s_rate).T, axis=0)
+        mf = np.mean(librosa.feature.mfcc(y=X, sr=s_rate, hop_length= 1024,n_mfcc=22).T, axis=0)
         mfc.append(mf)
         l = data.Class[i]
         lab.append(l)
-        # tonnetz
-        try:
-            t = np.mean(librosa.feature.tonnetz(
-                y=librosa.effects.harmonic(X), sr=s_rate).T, axis=0)
-            ton.append(t)
-        except:
-            print(f_name)
-        # mel-scaled spectrogram
-        m = np.mean(librosa.feature.melspectrogram(X, sr=s_rate).T, axis=0)
-        me.append(m)
-        # chromagram
-        s = np.abs(librosa.stft(X))
-        c = np.mean(librosa.feature.chroma_stft(S=s, sr=s_rate).T, axis=0)
-        chro.append(c)
+        # # tonnetz
+        # try:
+        #     t = np.mean(librosa.feature.tonnetz(
+        #         y=librosa.effects.harmonic(X), sr=s_rate).T, axis=0)
+        #     ton.append(t)
+        # except:
+        #     print(f_name)
+        # # mel-scaled spectrogram
+        # m = np.mean(librosa.feature.melspectrogram(X, sr=s_rate).T, axis=0)
+        # me.append(m)
+        # # chromagram
+        # s = np.abs(librosa.stft(X))
+        # c = np.mean(librosa.feature.chroma_stft(S=s, sr=s_rate).T, axis=0)
+        # chro.append(c)
 
     mfcc = pd.DataFrame(mfc)
-    mfcc.to_csv('./csv/mfcc.csv', index=False, header=False)
-    chromagram = pd.DataFrame(chro)
-    chromagram.to_csv('./csv/chromagram.csv', index=False, header=False)
-    mel = pd.DataFrame(me)
-    mel.to_csv('./csv/mel.csv', index=False, header=False)
-    tonnetz = pd.DataFrame(ton)
-    tonnetz.to_csv('./csv/tonnetz.csv', index=False, header=False)
-    lab_dict = {'classID': lab}
-    la = pd.DataFrame(lab_dict)
-    la.to_csv('./csv/labels.csv', index=False, header=False)
+    mfcc.to_csv('./csv/train/mfcc.csv', index=False, header=False)
+    # chromagram = pd.DataFrame(chro)
+    # chromagram.to_csv('./csv/chromagram.csv', index=False, header=False)
+    # mel = pd.DataFrame(me)
+    # mel.to_csv('./csv/mel.csv', index=False, header=False)
+    # tonnetz = pd.DataFrame(ton)
+    # tonnetz.to_csv('./csv/tonnetz.csv', index=False, header=False)
+    # lab_dict = {'classID': lab}
+    # la = pd.DataFrame(lab_dict)
+    # la.to_csv('./csv/labels.csv', index=False, header=False)
 
+    print(len(data), '筆')
     print('CSV寫入完成')
 
 if __name__ == "__main__":
