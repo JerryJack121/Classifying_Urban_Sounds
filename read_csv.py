@@ -4,11 +4,11 @@ import librosa
 import pandas as pd
 
 def read_csv():
-    labels = pd.read_csv('csv/labels.csv', header = None)
+    labels = pd.read_csv('csv/train/labels.csv', header = None)
     mfcc = pd.read_csv('csv/mfcc.csv', header = None)
-    chromagram = pd.read_csv('csv/chromagram.csv', header = None)
-    tonnetz = pd.read_csv('csv/tonnetz.csv', header = None)
-    mel = pd.read_csv('csv/mel.csv', header = None)
+    # chromagram = pd.read_csv('csv/chromagram.csv', header = None)
+    # tonnetz = pd.read_csv('csv/tonnetz.csv', header = None)
+    # mel = pd.read_csv('csv/mel.csv', header = None)
 
     mfcc =  np.array(mfcc)
     mel =  np.array(mel)
@@ -22,3 +22,10 @@ def read_csv():
     labels = labels.ravel()
 
     return feature,labels
+
+def read_csv2():
+    train_labels = pd.read_csv('csv/train/labels.csv', header = None)
+    train_features = pd.read_csv('csv/train/mfcc.csv', header = None)
+    test_features = pd.read_csv('csv/test/mfcc.csv', header = None)
+
+    return train_features, train_labels, test_features
